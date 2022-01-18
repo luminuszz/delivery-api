@@ -9,6 +9,5 @@ import { NestFactory } from '@nestjs/core';
     const app = await NestFactory.create(AppModule);
     app.useGlobalPipes(new ValidationPipe());
     app.useGlobalInterceptors(new BadRequestExceptionInterceptor());
-
     await app.listen(PORT);
 })();

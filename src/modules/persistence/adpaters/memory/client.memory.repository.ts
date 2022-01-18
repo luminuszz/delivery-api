@@ -30,6 +30,6 @@ export class ClientMemoryRepository implements ClientRepository {
     }
 
     getAll(): Client[] {
-        return undefined;
+        return this.clients;
     }
 }

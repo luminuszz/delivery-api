@@ -2,7 +2,9 @@ import { PrismaService } from '@app/modules/persistence/adpaters/prisma/prisma.s
 import { CreateClientDto } from '@core/dto/create-client.dto';
 import { Client } from '@core/entities/client.entity';
 import { ClientRepository } from '@core/ports/client.repository';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ClientPrismaRepository implements ClientRepository {
     constructor(private readonly prisma: PrismaService) {}
 
@@ -25,6 +27,6 @@ export class ClientPrismaRepository implements ClientRepository {
     }
 
     getAll(): Promise<Client[]> {
-        return undefined;
+        return this.prisma.client.findMany();
     }
 }

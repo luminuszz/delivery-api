@@ -18,4 +18,8 @@ export class ClientService {
             password: passwordHash,
         });
     }
+
+    async getAllClients() {
+        return this.clientRepository.getAll();
+    }
 }
