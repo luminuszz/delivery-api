@@ -1,4 +1,4 @@
-import { HashServiceProvider } from '@app/providers/hash/hashService.provider';
+import { HashServiceProvider } from '@app/shared/providers/hash/hashService.provider';
 import { Module } from '@nestjs/common';
 
 @Module({

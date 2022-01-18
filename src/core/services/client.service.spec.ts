@@ -1,6 +1,6 @@
 import { ClientServiceProvider } from '@app/modules/client/clientService.provider';
 import { PersistenceModule } from '@app/modules/persistence/persistence.module';
-import { HashModule } from '@app/providers/hash/hash.module';
+import { HashModule } from '@app/shared/providers/hash/hash.module';
 import { BadPayloadException } from '@core/errors/badPayloadException.error';
 import { ClientRepository } from '@core/ports/client.repository';
 import { ClientService } from '@core/services/client.service';
