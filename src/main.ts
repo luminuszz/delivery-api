@@ -1,10 +1,14 @@
+import { AppModule } from '@app/app.module';
+import { BadRequestExceptionInterceptor } from '@app/shared/interceptors/badRequestException.interceptor';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from './app.module';
-
 (async () => {
-    const PORT = process.env.PORT;
+    const PORT = process.env.PORT || 3000;
 
     const app = await NestFactory.create(AppModule);
-    await app.listen(PORT || 3000);
+    app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalInterceptors(new BadRequestExceptionInterceptor());
+
+    await app.listen(PORT);
 })();

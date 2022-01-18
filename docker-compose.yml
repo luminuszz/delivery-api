@@ -8,12 +8,13 @@ services:
         build: .
         ports:
             - ${PORT}:${PORT}
+            - ${PRISMA_STUDIO_PORT}:${PRISMA_STUDIO_PORT}
         tmpfs:
             - /home/temp
         volumes:
             - .:/home/services
         depends_on:
-            -   database
+            - database
 
     database:
         image: postgres

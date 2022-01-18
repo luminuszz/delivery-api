@@ -1,4 +1,4 @@
-import { DeliveryMan } from '@core/entities/deliveryman.entity';
+import { Deliveryman } from '@core/entities/deliveryman.entity';
 import { DeliveryManService } from '@core/services/deliveryman.service';
 import { Controller, Get } from '@nestjs/common';
 
@@ -7,7 +7,7 @@ export class DeliverymanController {
     constructor(private readonly deliverymanService: DeliveryManService) {}
 
     @Get()
-    async getAllDeliveryman(): Promise<DeliveryMan[]> {
+    async getAllDeliveryman(): Promise<Deliveryman[]> {
         return this.deliverymanService.getAll();
     }
 }

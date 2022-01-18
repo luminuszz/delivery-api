@@ -9,13 +9,14 @@ export enum PersistentType {
     MEMORY = 'MEMORY',
 }
 
+type PersistentTypeKeys = keyof typeof PersistentType;
+
 @Global()
 @Module({})
 export class PersistenceModule {
     static forRoot(type: PersistentType): DynamicModule {
-        if (type === PersistentType.MEMORY) {
-            console.log('t', PersistentType.MEMORY);
-            return {
+        const persistentModules: Record<PersistentTypeKeys, DynamicModule> = {
+            MEMORY: {
                 module: PersistenceModule,
                 providers: [
                     {
@@ -25,29 +26,30 @@ export class PersistenceModule {
                 ],
 
                 exports: [PERSISTENCE_TYPE],
-            };
-        }
-
-        return {
-            module: PersistenceModule,
-            imports: [PrismaModule],
-            providers: [
-                {
-                    provide: PERSISTENCE_TYPE,
-                    useValue: type,
-                },
-            ],
-            exports: [PERSISTENCE_TYPE],
+            },
+            PRISMA: {
+                module: PersistenceModule,
+                imports: [PrismaModule],
+                providers: [
+                    {
+                        provide: PERSISTENCE_TYPE,
+                        useValue: type,
+                    },
+                ],
+                exports: [PERSISTENCE_TYPE],
+            },
         };
+
+        return persistentModules[type];
     }
 
-    static forFeature(repository: any) {
-        switch (process.env.PERSISTENCE_TYPE) {
-            case String(PersistentType.PRISMA):
-                return PrismaModule.forFeature(repository);
-
+    static forFeature(repository: any, type?: PersistentType) {
+        switch (type || process.env.PERSISTENCE_TYPE) {
             case PersistentType.MEMORY:
                 return MemoryModule.forFeature(repository);
+
+            case PersistentType.PRISMA:
+                return PrismaModule.forFeature(repository);
         }
     }
 }

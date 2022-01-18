@@ -36,5 +36,5 @@ lerna-debug.log*
 
 # Enbs
 .env
-.env.develop
+.env.dev
 .env.test
