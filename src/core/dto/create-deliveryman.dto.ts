@@ -6,4 +6,7 @@ export class CreateDeliverymanDto extends OmitType(Deliveryman, [
     'updatedAt',
     'id',
     'deliveries',
-] as const) {}
+] as const) {
+    username: string;
+    password: string;
+}

@@ -1,0 +1,13 @@
+ ### Create new client
+
+POST http://localhost:3333/deliveryman
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "Carlos entregador",
+    "password": "1234566"
+
+}
+
+

@@ -1,5 +1,5 @@
 import { AppModule } from '@app/app.module';
-import { BadRequestExceptionInterceptor } from '@app/shared/interceptors/badRequestException.interceptor';
+import { CustomExceptionInterceptor } from '@app/shared/interceptors/customException.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
@@ -8,6 +8,6 @@ import { NestFactory } from '@nestjs/core';
 
     const app = await NestFactory.create(AppModule);
     app.useGlobalPipes(new ValidationPipe());
-    app.useGlobalInterceptors(new BadRequestExceptionInterceptor());
+    app.useGlobalInterceptors(new CustomExceptionInterceptor());
     await app.listen(PORT);
 })();

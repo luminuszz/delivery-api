@@ -52,7 +52,7 @@ describe('core -> authService', () => {
             password: newClient.password,
         });
 
-        expect(typeof results).toBe('string');
+        expect(results).toHaveProperty('accessToken');
         expect(results).toBeTruthy();
     });
 
@@ -107,7 +107,7 @@ describe('core -> authService', () => {
                 password: newDeliveryman.password,
             });
 
-            expect(typeof results).toBe('string');
+            expect(results).toHaveProperty('accessToken');
             expect(results).toBeTruthy();
         });
 

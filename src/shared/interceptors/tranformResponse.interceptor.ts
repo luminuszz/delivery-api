@@ -15,8 +15,6 @@ export class TransformResponseInterceptor implements NestInterceptor {
             this.reflector.get(PARSER_METADATA_KEY, context.getHandler()) ||
             this.reflector.get(PARSER_METADATA_KEY, context.getClass());
 
-        console.log({ parserFunc });
-
         return next.handle().pipe(
             map((data) => {
                 return parserFunc ? parserFunc(data) : data;
