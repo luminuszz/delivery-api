@@ -1,29 +1,24 @@
 import { CreateDeliverymanDto } from '@core/dto/create-deliveryman.dto';
 import { Deliveryman } from '@core/entities/deliveryman.entity';
-import { BadPayloadException } from '@core/errors/badPayloadException.error';
 import { DeliverymanRepository } from '@core/ports/deliveryman.repository';
+import { HashProvider } from '@core/ports/hash.provider';
 
 export class DeliveryManService {
-    constructor(private readonly deliverymanRepository: DeliverymanRepository) {}
+    constructor(
+        private readonly deliverymanRepository: DeliverymanRepository,
+        private readonly hashProvider: HashProvider,
+    ) {}
 
     async getAll() {
         return this.deliverymanRepository.getAll();
     }
 
     async findUserDeliverymanById(user_id: string): Promise<Deliveryman> {
-        const deliveryman = await this.deliverymanRepository.findOneById(user_id);
-
-        if (!deliveryman) throw new BadPayloadException('deliveryman not found');
-
-        return deliveryman;
+        return this.deliverymanRepository.findOneById(user_id);
     }
 
     async findDeliverymanByName(name: string): Promise<Deliveryman> {
-        const deliveryman = await this.deliverymanRepository.findOneByName(name);
-
-        if (!deliveryman) throw new BadPayloadException('deliveryman not found');
-
-        return deliveryman;
+        return this.deliverymanRepository.findOneByName(name);
     }
 
     async createDeliveryman({ password, username }: CreateDeliverymanDto) {
@@ -31,8 +26,10 @@ export class DeliveryManService {
 
         if (existsDeliverymanWithThisName) throw new Error('Already exists deliveryman with same name');
 
+        const passwordHash = await this.hashProvider.hash(password);
+
         return this.deliverymanRepository.create({
-            password,
+            password: passwordHash,
             username,
         });
     }

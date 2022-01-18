@@ -11,6 +11,6 @@ export class BcryptHashService implements HashProvider {
     }
 
     async hash(value: string): Promise<string> {
-        return this.provider.hash(value, 5);
+        return this.provider.hash(value, 10);
     }
 }

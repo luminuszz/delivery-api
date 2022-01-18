@@ -9,5 +9,6 @@ import { Module } from '@nestjs/common';
     imports: [PersistenceModule.forFeature(ClientRepository), HashModule],
     providers: [ClientServiceProvider],
     controllers: [ClientController],
+    exports: [ClientServiceProvider],
 })
 export class ClientModule {}

@@ -1,5 +1,6 @@
 import { DeliverymanServiceProvider } from '@app/modules/deliveryman/deliveryService.provider';
 import { PersistenceModule } from '@app/modules/persistence/persistence.module';
+import { HashModule } from '@app/shared/providers/hash/hash.module';
 import { BadPayloadException } from '@core/errors/badPayloadException.error';
 import { DeliverymanRepository } from '@core/ports/deliveryman.repository';
 import { DeliveryManService } from '@core/services/deliveryman.service';
@@ -11,7 +12,7 @@ describe('core -> deliverymanService', () => {
 
     beforeAll(async () => {
         const moduleRef = await Test.createTestingModule({
-            imports: [PersistenceModule.forFeature(DeliverymanRepository)],
+            imports: [PersistenceModule.forFeature(DeliverymanRepository), HashModule],
             providers: [DeliverymanServiceProvider],
         }).compile();
 
@@ -40,6 +41,7 @@ describe('core -> deliverymanService', () => {
             expect(deliveryman).toHaveProperty('id');
             expect(deliveryman).toHaveProperty('createdAt');
             expect(deliveryman).toHaveProperty('updatedAt');
+            expect('123456').not.toEqual(deliveryman.password);
         });
 
         it('not should be able to create a new delivery man with same name', async () => {
@@ -91,9 +93,7 @@ describe('core -> deliverymanService', () => {
                 password: faker.random.word(),
             });
 
-            await expect(deliverymanService.findDeliverymanByName(NOT_EXISTENT_NAME)).rejects.toBeInstanceOf(
-                BadPayloadException,
-            );
+            await expect(deliverymanService.findDeliverymanByName(NOT_EXISTENT_NAME)).resolves.toBe(undefined);
         });
     });
 
@@ -128,9 +128,7 @@ describe('core -> deliverymanService', () => {
                 password: faker.random.word(),
             });
 
-            await expect(deliverymanService.findUserDeliverymanById(NOT_EXISTENT_ID)).rejects.toBeInstanceOf(
-                BadPayloadException,
-            );
+            await expect(deliverymanService.findUserDeliverymanById(NOT_EXISTENT_ID)).resolves.toBe(undefined);
         });
     });
 });

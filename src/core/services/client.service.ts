@@ -22,4 +22,8 @@ export class ClientService {
     async getAllClients() {
         return this.clientRepository.getAll();
     }
+
+    async findClientByName(name: string) {
+        return this.clientRepository.findOneByName(name);
+    }
 }

@@ -1,5 +1,6 @@
 import { DeliverymanController } from '@app/modules/deliveryman/deliveryman.controller';
 import { PersistenceModule } from '@app/modules/persistence/persistence.module';
+import { HashModule } from '@app/shared/providers/hash/hash.module';
 import { DeliverymanRepository } from '@core/ports/deliveryman.repository';
 import { Test } from '@nestjs/testing';
 
@@ -10,7 +11,7 @@ describe('deliverymanController', () => {
 
     beforeAll(async () => {
         const module = await Test.createTestingModule({
-            imports: [PersistenceModule.forFeature(DeliverymanRepository)],
+            imports: [PersistenceModule.forFeature(DeliverymanRepository), HashModule],
             controllers: [DeliverymanController],
             providers: [DeliverymanServiceProvider],
         }).compile();
