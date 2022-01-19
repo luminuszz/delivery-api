@@ -13,7 +13,8 @@ export class Delivery {
     item_name: string;
     client_id: string;
     deliveryman_id: string;
-    status: DeliveryStatus;
+
+    status: DeliveryStatus | keyof typeof DeliveryStatus;
 
     updatedAt: Date;
     createdAt: Date;

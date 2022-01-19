@@ -1,8 +1,7 @@
-import { WithJwt, User } from '@app/modules/auth/guards/jwt.guard';
+import { WithJwt } from '@app/modules/auth/decorators/withJwt.decorator';
 import { parserClient } from '@app/modules/client/parses/parserClient';
 import { CreateClientValidatorPipe } from '@app/modules/client/pipes/create-client.pipe';
 import { Parser } from '@app/shared/decorators/parser.decorator';
-import { PayloadToken } from '@core/services/auth.service';
 import { ClientService } from '@core/services/client.service';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 
@@ -19,7 +18,7 @@ export class ClientController {
     @WithJwt()
     @Get()
     @Parser(parserClient)
-    async getAllClients(@User() data: PayloadToken) {
+    async getAllClients() {
         return this.clientService.getAllClients();
     }
 }

@@ -57,7 +57,7 @@ describe('core -> deliverymanService', () => {
                     username: SAME_NAME,
                     password: faker.random.word(),
                 }),
-            ).rejects.toBeInstanceOf(Error);
+            ).rejects.toBeInstanceOf(BadPayloadException);
         });
     });
 

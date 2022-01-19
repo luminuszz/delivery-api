@@ -1,0 +1,14 @@
+ ### Create new client
+
+POST http://localhost:3333/delivery
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIiwiaWQiOiIxNmJmMjUwZC1iMDk3LTRkZjMtODZmOC1kNjdiNWZhZTFkZWUiLCJpYXQiOjE2NDI1NTEyMTQsImV4cCI6MTY0MzE1NjAxNH0.6_5AwTp9uXi3jUYjLC4iMy_yOqfglepacyrqMIDKDPk
+
+{
+    "item_name": "Carrinho de brinquedo",
+    "client_id": "16bf250d-b097-4df3-86f8-d67b5fae1dee",
+    "deliveryman_id": "356728e8-b043-4827-b514-ddb480a53ff5"
+}
+
+

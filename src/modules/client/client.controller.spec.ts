@@ -80,7 +80,9 @@ describe('app -> ClientController', () => {
 
             const parsedData = parserClient(clients);
 
-            expect(parsedData[0]).not.toHaveProperty('password');
+            parsedData.map((item) => {
+                expect(item).not.toHaveProperty('password');
+            });
         });
     });
 });
