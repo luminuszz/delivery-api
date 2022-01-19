@@ -22,7 +22,7 @@ export class ClientMemoryRepository implements ClientRepository {
     }
 
     findOneById(id: string): Client {
-        return undefined;
+        return this.clients.find((item) => item.id === id);
     }
 
     findOneByName(name: string): Client {

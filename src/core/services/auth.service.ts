@@ -1,15 +1,17 @@
 import { ValidateClientDto } from '@core/dto/validate-client.dto';
 import { ValidateDeliverymanDto } from '@core/dto/validate-deliveryman.dto';
-import { Deliveryman } from '@core/entities/deliveryman.entity';
 import { UnauthorizedException } from '@core/errors/unauthorizedException.error';
 import { HashProvider } from '@core/ports/hash.provider';
 import { ClientService } from '@core/services/client.service';
 import { DeliveryManService } from '@core/services/deliveryman.service';
 import { JwtService } from '@nestjs/jwt';
 
+export type UserType = 'deliveryman' | 'client';
+
 export type PayloadToken = {
     name: string;
     id: string;
+    userType: UserType;
 };
 
 export type PromiseWithJWT = Promise<{ accessToken: string }>;
@@ -38,6 +40,7 @@ export class AuthService {
         const payload: PayloadToken = {
             name: client.username,
             id: client.id,
+            userType: 'client',
         };
 
         return {
@@ -61,6 +64,7 @@ export class AuthService {
         const payload: PayloadToken = {
             name: deliveryman.username,
             id: deliveryman.id,
+            userType: 'deliveryman',
         };
 
         return {

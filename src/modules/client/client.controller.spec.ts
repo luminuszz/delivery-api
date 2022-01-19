@@ -1,6 +1,6 @@
 import { ClientController } from '@app/modules/client/client.controller';
 import { ClientServiceProvider } from '@app/modules/client/clientService.provider';
-import { parserClientsParser } from '@app/modules/client/parses/parserClients.parser';
+import { parseClientsParser } from '@app/modules/client/parses/parserClients.parser';
 import { CreateClientValidatorPipe } from '@app/modules/client/pipes/create-client.pipe';
 import { PersistenceModule } from '@app/modules/persistence/persistence.module';
 import { HashModule } from '@app/shared/providers/hash/hash.module';
@@ -78,7 +78,7 @@ describe('app -> ClientController', () => {
 
             const clients = [getClient(), getClient()];
 
-            const parsedData = parserClientsParser(clients);
+            const parsedData = parseClientsParser(clients);
 
             parsedData.map((item) => {
                 expect(item).not.toHaveProperty('password');

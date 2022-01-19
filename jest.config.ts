@@ -12,7 +12,7 @@ export default {
     transform: {
         '^.+\\.(t|j)s$': 'ts-jest',
     },
-    collectCoverageFrom: ['**/*.(service|controller|pipe).(t|j)s'],
+    collectCoverageFrom: ['**/*.(service|controller|pipe|guard).(t|j)s'],
     coverageDirectory: './coverage',
     verbose: true,
     testEnvironment: 'node',

@@ -2,6 +2,7 @@ import jwtConfig from '@app/config/jwt.config';
 import { AuthController } from '@app/modules/auth/auth.controller';
 import { AuthServiceProvider } from '@app/modules/auth/authService.provider';
 import { JwtAuthGuard } from '@app/modules/auth/guards/jwt.guard';
+import { RoleGuard } from '@app/modules/auth/guards/role.guard';
 import { JwtStrategy } from '@app/modules/auth/jwt.strategy';
 import { ClientModule } from '@app/modules/client/client.module';
 import { DeliverymanModule } from '@app/modules/deliveryman/deliveryman.module';
@@ -21,7 +22,7 @@ import { JwtModule } from '@nestjs/jwt';
             },
         }),
     ],
-    providers: [AuthServiceProvider, JwtStrategy, JwtAuthGuard],
+    providers: [AuthServiceProvider, JwtStrategy, JwtAuthGuard, RoleGuard],
     controllers: [AuthController],
 })
 export class AuthModule {}

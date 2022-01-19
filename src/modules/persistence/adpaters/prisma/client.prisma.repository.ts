@@ -14,8 +14,12 @@ export class ClientPrismaRepository implements ClientRepository {
         });
     }
 
-    findOneById(): Promise<Client> {
-        return undefined;
+    findOneById(id: string): Promise<Client> {
+        return this.prisma.client.findUnique({
+            where: {
+                id,
+            },
+        });
     }
 
     findOneByName(name: string): Promise<Client> {

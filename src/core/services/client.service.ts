@@ -26,4 +26,8 @@ export class ClientService {
     async findClientByName(name: string) {
         return this.clientRepository.findOneByName(name);
     }
+
+    async findClientById(id: string) {
+        return this.clientRepository.findOneById(id);
+    }
 }
