@@ -5,6 +5,7 @@ export enum DeliveryStatus {
     pending = 'pending',
     delivered = 'delivered',
     notDelivered = 'notDelivered',
+    transport = 'transport',
 }
 
 export class Delivery {
@@ -12,9 +13,9 @@ export class Delivery {
 
     item_name: string;
     client_id: string;
-    deliveryman_id: string;
-
+    deliveryman_id?: string;
     status: DeliveryStatus | keyof typeof DeliveryStatus;
+    end_at?: Date;
 
     updatedAt: Date;
     createdAt: Date;

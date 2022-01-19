@@ -5,7 +5,7 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: ['@typescript-eslint/eslint-plugin', 'eslint-plugin-import-helpers'],
-    extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
+    extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
     root: true,
     env: {
         node: true,
@@ -21,7 +21,7 @@ module.exports = {
             'warn',
             {
                 newlinesBetween: 'always',
-                groups: ['module', '/^@core$/', ['parent', 'sibling', 'index']],
+                groups: ['module', '/^@core$/', '/^@app$/', ['parent', 'sibling', 'index']],
                 alphabetize: { order: 'asc', ignoreCase: true },
             },
         ],

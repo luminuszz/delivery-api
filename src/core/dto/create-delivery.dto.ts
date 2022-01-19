@@ -7,5 +7,6 @@ export class CreateDeliveryDto extends OmitType(Delivery, [
     'id',
     'client',
     'deliveryman',
+    'deliveryman_id',
     'status',
 ]) {}
