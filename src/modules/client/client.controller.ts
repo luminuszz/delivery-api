@@ -19,7 +19,7 @@ export class ClientController {
     @WithJwt()
     @Get()
     @Parser(parserClient)
-    async getAllClients() {
+    async getAllClients(@User() data: PayloadToken) {
         return this.clientService.getAllClients();
     }
 }
