@@ -31,6 +31,7 @@ model Client {
 
 enum DeliveryStatus {
     pending
+    transport
     delivered
     notDelivered
 
@@ -41,11 +42,12 @@ model Delivery {
 
   item_name             String
   client_id             String
-  deliveryman_id        String
-  status                DeliveryStatus            @default(pending)
+  deliveryman_id        String?
+  status                DeliveryStatus
 
   client                Client                    @relation(fields: [client_id], references: [id])
-  deliveryman           Deliveryman               @relation(fields: [deliveryman_id], references: [id])
+  deliveryman           Deliveryman?               @relation(fields: [deliveryman_id], references: [id])
+  end_at                DateTime?
 
   createdAt             DateTime                  @default(now())
   updatedAt             DateTime                  @updatedAt

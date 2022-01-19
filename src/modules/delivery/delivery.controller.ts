@@ -1,7 +1,9 @@
+import { User } from '@app/modules/auth/decorators/user.decorator';
 import { WithJwt } from '@app/modules/auth/decorators/withJwt.decorator';
+import { AcceptDeliveryValidatorPipe } from '@app/modules/delivery/pipes/accpet-delivery-validator.pipe';
 import { CreateDeliveryValidatorPipe } from '@app/modules/delivery/pipes/create-delivery-validator.pipe';
 import { DeliveryService } from '@core/services/delivery.service';
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Put } from '@nestjs/common';
 
 @Controller('delivery')
 export class DeliveryController {
@@ -11,5 +13,14 @@ export class DeliveryController {
     @Post()
     async createDelivery(@Body() data: CreateDeliveryValidatorPipe) {
         return this.deliveryService.createDelivery(data);
+    }
+
+    @WithJwt()
+    @Put('accept')
+    async acceptDelivery(@Body() data: AcceptDeliveryValidatorPipe, @User('id') deliveryman_id: string) {
+        return this.deliveryService.acceptDelivery({
+            delivery_id: data.delivery_id,
+            deliveryman_id,
+        });
     }
 }

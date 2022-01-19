@@ -8,7 +8,4 @@ export class CreateDeliveryValidatorPipe implements CreateDeliveryDto {
 
     @IsUUID()
     client_id: string;
-
-    @IsUUID()
-    deliveryman_id: string;
 }

@@ -8,13 +8,13 @@ import { Injectable } from '@nestjs/common';
 export class ClientPrismaRepository implements ClientRepository {
     constructor(private readonly prisma: PrismaService) {}
 
-    create(data: CreateClientDto): Promise<Client> {
+    async create(data: CreateClientDto): Promise<Client> {
         return this.prisma.client.create({
             data,
         });
     }
 
-    findOneById(id: string): Promise<Client> {
+    findOneById(): Promise<Client> {
         return undefined;
     }
 
