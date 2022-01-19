@@ -1,4 +1,6 @@
 GET http://localhost:3333/clients
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIiwiaWQiOiIxNmJmMjUwZC1iMDk3LTRkZjMtODZmOC1kNjdiNWZhZTFkZWUiLCJpYXQiOjE2NDI1NTEyMTQsImV4cCI6MTY0MzE1NjAxNH0.6_5AwTp9uXi3jUYjLC4iMy_yOqfglepacyrqMIDKDPk
+
 
 
 ###
