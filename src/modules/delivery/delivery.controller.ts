@@ -1,3 +1,4 @@
+import { Role } from '@app/modules/auth/decorators/role.decorator';
 import { User } from '@app/modules/auth/decorators/user.decorator';
 import { WithJwt } from '@app/modules/auth/decorators/withJwt.decorator';
 import { AcceptDeliveryValidatorPipe } from '@app/modules/delivery/pipes/accpet-delivery-validator.pipe';
@@ -11,12 +12,14 @@ export class DeliveryController {
 
     @WithJwt()
     @Post()
+    @Role('client')
     async createDelivery(@Body() data: CreateDeliveryValidatorPipe) {
         return this.deliveryService.createDelivery(data);
     }
 
     @WithJwt()
     @Put('accept')
+    @Role('deliveryman')
     async acceptDelivery(@Body() data: AcceptDeliveryValidatorPipe, @User('id') deliveryman_id: string) {
         return this.deliveryService.acceptDelivery({
             delivery_id: data.delivery_id,

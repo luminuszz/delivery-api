@@ -3,10 +3,10 @@
 POST http://localhost:3333/delivery
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIiwiaWQiOiJlNjU2Yzc1MC0wNWY3LTRlNDAtOGEzYi0xNWU0ZDZmOGVjMjQiLCJpYXQiOjE2NDI2MjQ3MjgsImV4cCI6MTY0MzIyOTUyOH0.IKX4hX-jdnt09bQTbm6HJjD9PyrAuoPxlDZmWKl81RU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIiwiaWQiOiJlNjU2Yzc1MC0wNWY3LTRlNDAtOGEzYi0xNWU0ZDZmOGVjMjQiLCJ1c2VyVHlwZSI6ImNsaWVudCIsImlhdCI6MTY0MjYzNzY0OCwiZXhwIjoxNjQzMjQyNDQ4fQ.znvSCk39VCN8jBUNiLhToJQHxXjGMTfDAIAoPyoc16Q
 
 {
-    "item_name": "Brinquedo rot",
+    "item_name": "Brinquedo rot 2",
     "client_id": "e656c750-05f7-4e40-8a3b-15e4d6f8ec24"
 }
 

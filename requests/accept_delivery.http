@@ -3,10 +3,10 @@
 PUT http://localhost:3333/delivery/accept
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIGVudHJlZ2Fkb3IiLCJpZCI6IjI0ZDc1ZjQ5LWQ2YjQtNDQ3MS1iYmM3LTc5ZTAzZGM5MDExMiIsImlhdCI6MTY0MjYyNDgyNiwiZXhwIjoxNjQzMjI5NjI2fQ.n0_MkYGll2L6dzEyAlEDIt5CPlm1YgQgjZhTLmiiYZE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIGVudHJlZ2Fkb3IiLCJpZCI6IjI0ZDc1ZjQ5LWQ2YjQtNDQ3MS1iYmM3LTc5ZTAzZGM5MDExMiIsInVzZXJUeXBlIjoiZGVsaXZlcnltYW4iLCJpYXQiOjE2NDI2MzgxMDUsImV4cCI6MTY0MzI0MjkwNX0.Gx03ud6I8x_DuoYwJG_jWtrYOMjBrxfm46S68BGkTNM
 
 {
-    "delivery_id": "5ff2524d-9fa9-4185-bac3-991d42281ad5"
+    "delivery_id": "eb732848-28c6-40c8-8584-0f80daa94ad5"
 }
 
 

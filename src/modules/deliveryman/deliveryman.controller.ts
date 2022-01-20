@@ -1,3 +1,4 @@
+import { Public } from '@app/modules/auth/decorators/public.decorator';
 import { parseDeliveryman } from '@app/modules/deliveryman/parses/parse-deliveryman.parser';
 import { CreateDeliverymanValidationPipe } from '@app/modules/deliveryman/pipes/create-deliveryman.pipe';
 import { Parser } from '@app/shared/decorators/parser.decorator';
@@ -15,6 +16,7 @@ export class DeliverymanController {
     }
 
     @Post()
+    @Public()
     @Parser(parseDeliveryman)
     async createDeliveryman(@Body() data: CreateDeliverymanValidationPipe) {
         return this.deliverymanService.createDeliveryman(data);

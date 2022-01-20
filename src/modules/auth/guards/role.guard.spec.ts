@@ -203,7 +203,7 @@ describe('RoleGuard', () => {
     });
 
     it('not should be able to pass if not  exists req user', async () => {
-        jest.spyOn(reflector, 'get').mockReturnValue(undefined);
+        jest.spyOn(reflector, 'get').mockReturnValue('client');
 
         await expect(roleGuard.canActivate(mockExecutionContext(undefined) as ExecutionContext)).rejects.toBeInstanceOf(
             UnauthorizedException,

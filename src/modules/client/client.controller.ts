@@ -1,3 +1,4 @@
+import { Public } from '@app/modules/auth/decorators/public.decorator';
 import { WithJwt } from '@app/modules/auth/decorators/withJwt.decorator';
 import { parseClientParser } from '@app/modules/client/parses/parseClient.parser';
 import { parseClientsParser } from '@app/modules/client/parses/parserClients.parser';
@@ -10,6 +11,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 export class ClientController {
     constructor(private readonly clientService: ClientService) {}
 
+    @Public()
     @Post()
     @Parser(parseClientParser)
     async createClient(@Body() data: CreateClientValidatorPipe) {
