@@ -29,12 +29,13 @@ describe('app  -> DeliveryController', () => {
 
     describe('createDelivery', () => {
         it('should be able to create a new delivery by endpoint', async () => {
+            const client_id = faker.datatype.uuid();
+
             const delivery: CreateDeliveryValidatorPipe = {
-                client_id: faker.datatype.uuid(),
                 item_name: faker.commerce.productName(),
             };
 
-            const response = await deliveryController.createDelivery(delivery);
+            const response = await deliveryController.createDelivery(client_id, delivery);
 
             expect(response).toHaveProperty('id');
         });
@@ -45,7 +46,6 @@ describe('app  -> DeliveryController', () => {
             const dto = new CreateDeliveryValidatorPipe();
 
             dto.item_name = '';
-            dto.client_id = 'NOT_A_UUID';
 
             const metadata: ArgumentMetadata = {
                 type: 'body',
@@ -58,15 +58,19 @@ describe('app  -> DeliveryController', () => {
     });
 
     describe('acceptDelivery', () => {
-        it('should be able to accpet delivery endpoint', async () => {
-            const delivery_id = faker.datatype.uuid();
+        it('should be able to accept delivery endpoint', async () => {
+            const client_id = faker.datatype.uuid();
+
+            const delivery = await deliveryController.createDelivery(client_id, {
+                item_name: faker.commerce.productName(),
+            });
 
             const deliveryman = await deliverymanService.createDeliveryman({
                 username: faker.name.firstName(),
                 password: faker.random.alpha(),
             });
 
-            const results = await deliveryController.acceptDelivery({ delivery_id }, deliveryman.id);
+            const results = await deliveryController.acceptDelivery({delivery_id: delivery.id}, deliveryman.id);
 
             expect(results.deliveryman_id).toEqual(deliveryman.id);
             expect(results.status).toEqual(DeliveryStatus.transport);
@@ -86,6 +90,63 @@ describe('app  -> DeliveryController', () => {
             };
 
             await expect(target.transform(dto, metadata)).rejects.toBeInstanceOf(BadRequestException);
+        });
+    });
+
+    describe('finishDelivery', () => {
+        it('should be able to finish delivery endpoint', async () => {
+            const mockedDate = new Date();
+
+            jest.spyOn(global, 'Date').mockReturnValue(mockedDate as any);
+
+            const client_id = faker.datatype.uuid();
+
+            const delivery = await deliveryController.createDelivery(client_id, {
+                item_name: faker.commerce.productName(),
+            });
+
+            const deliveryman = await deliverymanService.createDeliveryman({
+                username: faker.name.firstName(),
+                password: faker.random.alpha(),
+            });
+
+            await deliveryController.acceptDelivery({delivery_id: delivery.id}, deliveryman.id);
+
+            const results = await deliveryController.finishDelivery(deliveryman.id, {
+                isDelivered: true,
+                delivery_id: delivery.id,
+            });
+
+            expect(results.status).toEqual(DeliveryStatus.delivered);
+            expect(results.end_at).toBeTruthy();
+            expect(results.end_at).toBe(mockedDate);
+        });
+    });
+
+    describe('getAllavailableDeliveries', () => {
+        it('should be able to get all deliveries with status pending endpoint', async () => {
+            const client_id = faker.datatype.uuid();
+            const secondClient_id = faker.datatype.uuid();
+
+            await deliveryController.createDelivery(client_id, {
+                item_name: faker.commerce.productName(),
+            });
+
+            await deliveryController.createDelivery(secondClient_id, {
+                item_name: faker.commerce.productName(),
+            });
+
+            const response = await deliveryController.getAllavailableDeliveries();
+
+            const scoopedResponse = response.filter(
+                (item) => item.client_id === client_id || item.client_id === secondClient_id,
+            );
+
+            expect(scoopedResponse).toHaveLength(2);
+
+            scoopedResponse.forEach((item) => {
+                expect(item.status).toEqual(DeliveryStatus.pending);
+            });
         });
     });
 });

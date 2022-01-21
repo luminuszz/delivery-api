@@ -1,9 +1,8 @@
 import { PrismaService } from '@app/modules/persistence/adpaters/prisma/prisma.service';
-import { AcceptDeliveryDto } from '@core/dto/accepet-delivery.dto';
 import { CreateDeliveryDto } from '@core/dto/create-delivery.dto';
-import { Delivery, DeliveryStatus } from '@core/entities/delivery.entity';
-import { DeliveryRepository } from '@core/ports/delivery.repository';
-import { Injectable } from '@nestjs/common';
+import {Delivery, DeliveryStatus} from '@core/entities/delivery.entity';
+import {DeliveryRepository, UpdateDeliveryData} from '@core/ports/delivery.repository';
+import {Injectable} from '@nestjs/common';
 
 @Injectable()
 export class DeliveryPrismaRepository implements DeliveryRepository {
@@ -18,29 +17,45 @@ export class DeliveryPrismaRepository implements DeliveryRepository {
         });
     }
 
-    acceptDelivery({ delivery_id, deliveryman_id }: AcceptDeliveryDto): Promise<Delivery> {
+    async updateDelivery(id: string, updateDeliveryData: UpdateDeliveryData): Promise<Delivery> {
         return this.prisma.delivery.update({
             where: {
-                id: delivery_id,
+                id,
             },
             data: {
-                deliveryman_id,
-                status: DeliveryStatus.transport,
+                ...(updateDeliveryData as any),
             },
         });
     }
 
-    async findDeliveryPending() {
+    async findDeliveryById(id: string): Promise<Delivery> {
+        return this.prisma.delivery.findUnique({
+            where: {
+                id,
+            },
+        });
+    }
+
+    async findAllByClientId(client_id: string): Promise<Delivery[]> {
         return this.prisma.delivery.findMany({
             where: {
-                AND: [
-                    {
-                        deliveryman_id: null,
-                    },
-                    {
-                        status: DeliveryStatus.pending,
-                    },
-                ],
+                client_id,
+            },
+        });
+    }
+
+    async findAllWithPendingStatus(): Promise<Delivery[]> {
+        return this.prisma.delivery.findMany({
+            where: {
+                status: DeliveryStatus.pending,
+            },
+        });
+    }
+
+    findAllByDeliverymanId(deliveryman_id: string): Promise<Delivery[]> {
+        return this.prisma.delivery.findMany({
+            where: {
+                deliveryman_id,
             },
         });
     }

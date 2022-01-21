@@ -1,12 +1,13 @@
  ### Create new client
 
-PUT http://localhost:3333/delivery/accept
+PUT http://localhost:3333/delivery/finish
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSnVuaW9yIGRvcyBzYW50b3MiLCJpZCI6IjE0NDFmMzYxLWNmMDYtNDNlNC04ZDQ0LWNjN2EyYmY1NGZkMyIsInVzZXJUeXBlIjoiZGVsaXZlcnltYW4iLCJpYXQiOjE2NDI3MjMxNzgsImV4cCI6MTY0MzMyNzk3OH0.sqi2SbhmUSvmPp6YXY7YE7DR9E_nnPG8mOS4i1E4iXU
 
 {
-    "delivery_id": "99169d10-b254-4990-ab10-c227ec869d99"
+    "delivery_id": "99169d10-b254-4990-ab10-c227ec869d99",
+    "isDelivered": false
 }
 
 

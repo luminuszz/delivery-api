@@ -3,11 +3,11 @@
 POST http://localhost:3333/delivery
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIiwiaWQiOiJlNjU2Yzc1MC0wNWY3LTRlNDAtOGEzYi0xNWU0ZDZmOGVjMjQiLCJ1c2VyVHlwZSI6ImNsaWVudCIsImlhdCI6MTY0MjYzNzY0OCwiZXhwIjoxNjQzMjQyNDQ4fQ.znvSCk39VCN8jBUNiLhToJQHxXjGMTfDAIAoPyoc16Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVpcyBzYW50YW5hIiwiaWQiOiJjZjc4N2EyZS03NDMzLTRjZTktODYwNy02YzAwZTQ2YzZhYWQiLCJ1c2VyVHlwZSI6ImNsaWVudCIsImlhdCI6MTY0MjcyMzA3OCwiZXhwIjoxNjQzMzI3ODc4fQ.G7-S9yv1Enqz2ieHwm361ySoIO-HCvLyzjxngEMT9WI
 
 {
-    "item_name": "Brinquedo rot 2",
-    "client_id": "e656c750-05f7-4e40-8a3b-15e4d6f8ec24"
+    "item_name": "Fogão 4 bocas inox",
+    "client_id": "cf787a2e-7433-4ce9-8607-6c00e46c6aad"
 }
 
 

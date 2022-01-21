@@ -1,0 +1,6 @@
+GET http://localhost:3333/deliveryman/myDeliveries
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSnVuaW9yIGRvcyBzYW50b3MiLCJpZCI6IjE0NDFmMzYxLWNmMDYtNDNlNC04ZDQ0LWNjN2EyYmY1NGZkMyIsInVzZXJUeXBlIjoiZGVsaXZlcnltYW4iLCJpYXQiOjE2NDI3MjcyNDAsImV4cCI6MTY0MzMzMjA0MH0.vzwYmqdZZ1pWg4WTgs2RBu6XBfn72CZpYZ8XmyJTSlI
+
+
+
+###

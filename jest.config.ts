@@ -5,7 +5,7 @@ import { compilerOptions } from './tsconfig.json';
 
 export default {
     moduleFileExtensions: ['js', 'json', 'ts'],
-    coveragePathIgnorePatterns: ['node_modules', 'dist'],
+    coveragePathIgnorePatterns: ['node_modules', 'dist', 'prisma'],
     globalSetup: './scripts/setup.ts',
     rootDir: '.',
     testRegex: '.*\\.spec\\.ts$',
