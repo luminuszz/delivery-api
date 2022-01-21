@@ -1,8 +1,8 @@
 import { PrismaService } from '@app/modules/persistence/adpaters/prisma/prisma.service';
 import { CreateDeliveryDto } from '@core/dto/create-delivery.dto';
-import {Delivery, DeliveryStatus} from '@core/entities/delivery.entity';
-import {DeliveryRepository, UpdateDeliveryData} from '@core/ports/delivery.repository';
-import {Injectable} from '@nestjs/common';
+import { Delivery, DeliveryStatus } from '@core/entities/delivery.entity';
+import { DeliveryRepository, UpdateDeliveryData } from '@core/ports/delivery.repository';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DeliveryPrismaRepository implements DeliveryRepository {

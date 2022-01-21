@@ -1,10 +1,10 @@
 import { Role } from '@app/modules/auth/decorators/role.decorator';
 import { User } from '@app/modules/auth/decorators/user.decorator';
 import { AcceptDeliveryValidatorPipe } from '@app/modules/delivery/pipes/accpet-delivery-validator.pipe';
-import {CreateDeliveryValidatorPipe} from '@app/modules/delivery/pipes/create-delivery-validator.pipe';
-import {FinishDeliveryValidatorPipe} from '@app/modules/delivery/pipes/finish-delivery-validator.pipe';
-import {DeliveryService} from '@core/services/delivery.service';
-import {Body, Controller, Get, Post, Put} from '@nestjs/common';
+import { CreateDeliveryValidatorPipe } from '@app/modules/delivery/pipes/create-delivery-validator.pipe';
+import { FinishDeliveryValidatorPipe } from '@app/modules/delivery/pipes/finish-delivery-validator.pipe';
+import { DeliveryService } from '@core/services/delivery.service';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 
 @Controller('delivery')
 export class DeliveryController {

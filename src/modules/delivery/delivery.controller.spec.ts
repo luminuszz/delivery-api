@@ -70,7 +70,7 @@ describe('app  -> DeliveryController', () => {
                 password: faker.random.alpha(),
             });
 
-            const results = await deliveryController.acceptDelivery({delivery_id: delivery.id}, deliveryman.id);
+            const results = await deliveryController.acceptDelivery({ delivery_id: delivery.id }, deliveryman.id);
 
             expect(results.deliveryman_id).toEqual(deliveryman.id);
             expect(results.status).toEqual(DeliveryStatus.transport);
@@ -110,7 +110,7 @@ describe('app  -> DeliveryController', () => {
                 password: faker.random.alpha(),
             });
 
-            await deliveryController.acceptDelivery({delivery_id: delivery.id}, deliveryman.id);
+            await deliveryController.acceptDelivery({ delivery_id: delivery.id }, deliveryman.id);
 
             const results = await deliveryController.finishDelivery(deliveryman.id, {
                 isDelivered: true,

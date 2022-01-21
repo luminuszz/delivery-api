@@ -1,7 +1,7 @@
 import { CreateDeliveryDto } from '@core/dto/create-delivery.dto';
-import {Delivery, DeliveryStatus} from '@core/entities/delivery.entity';
-import {DeliveryRepository, UpdateDeliveryData} from '@core/ports/delivery.repository';
-import {uuid} from 'uuidv4';
+import { Delivery, DeliveryStatus } from '@core/entities/delivery.entity';
+import { DeliveryRepository, UpdateDeliveryData } from '@core/ports/delivery.repository';
+import { uuid } from 'uuidv4';
 
 export class DeliveryMemoryRepository implements DeliveryRepository {
     private deliveries: Delivery[] = [];

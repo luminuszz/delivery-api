@@ -1,18 +1,17 @@
-import {AcceptDeliveryDto} from '@core/dto/accepet-delivery.dto';
-import {CreateDeliveryDto} from '@core/dto/create-delivery.dto';
-import {FinishDeliveryDto} from '@core/dto/finish-delivery.dto';
-import {Delivery, DeliveryStatus} from '@core/entities/delivery.entity';
-import {BadPayloadException} from '@core/errors/badPayloadException.error';
-import {UnauthorizedException} from '@core/errors/unauthorizedException.error';
-import {DeliveryRepository} from '@core/ports/delivery.repository';
-import {DeliveryManService} from '@core/services/deliveryman.service';
+import { AcceptDeliveryDto } from '@core/dto/accepet-delivery.dto';
+import { CreateDeliveryDto } from '@core/dto/create-delivery.dto';
+import { FinishDeliveryDto } from '@core/dto/finish-delivery.dto';
+import { Delivery, DeliveryStatus } from '@core/entities/delivery.entity';
+import { BadPayloadException } from '@core/errors/badPayloadException.error';
+import { UnauthorizedException } from '@core/errors/unauthorizedException.error';
+import { DeliveryRepository } from '@core/ports/delivery.repository';
+import { DeliveryManService } from '@core/services/deliveryman.service';
 
 export class DeliveryService {
     constructor(
         private readonly deliveryRepository: DeliveryRepository,
         private readonly deliveryManService: DeliveryManService,
-    ) {
-    }
+    ) {}
 
     async getDeliveryById(id: string): Promise<Delivery> {
         return this.deliveryRepository.findDeliveryById(id);
@@ -42,7 +41,7 @@ export class DeliveryService {
         });
     }
 
-    async finishDelivery({delivery_id, deliveryman_id, isDelivered}: FinishDeliveryDto): Promise<Delivery> {
+    async finishDelivery({ delivery_id, deliveryman_id, isDelivered }: FinishDeliveryDto): Promise<Delivery> {
         const delivery = await this.getDeliveryById(delivery_id);
 
         if (delivery.status !== DeliveryStatus.transport) {

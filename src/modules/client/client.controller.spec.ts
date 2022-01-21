@@ -1,14 +1,14 @@
 import { ClientController } from '@app/modules/client/client.controller';
 import { ClientServiceProvider } from '@app/modules/client/clientService.provider';
 import { parseClientsParser } from '@app/modules/client/parses/parserClients.parser';
-import {CreateClientValidatorPipe} from '@app/modules/client/pipes/create-client.pipe';
-import {DeliveryModule} from '@app/modules/delivery/delivery.module';
-import {PersistenceModule} from '@app/modules/persistence/persistence.module';
+import { CreateClientValidatorPipe } from '@app/modules/client/pipes/create-client.pipe';
+import { DeliveryModule } from '@app/modules/delivery/delivery.module';
+import { PersistenceModule } from '@app/modules/persistence/persistence.module';
 import { HashModule } from '@app/shared/providers/hash/hash.module';
 import { Client } from '@core/entities/client.entity';
-import {ClientRepository} from '@core/ports/client.repository';
-import {DeliveryService} from '@core/services/delivery.service';
-import {ArgumentMetadata, BadRequestException, ValidationPipe} from '@nestjs/common';
+import { ClientRepository } from '@core/ports/client.repository';
+import { DeliveryService } from '@core/services/delivery.service';
+import { ArgumentMetadata, BadRequestException, ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as faker from 'faker';
 

@@ -4,9 +4,9 @@ import { PersistenceModule } from '@app/modules/persistence/persistence.module';
 import { HashModule } from '@app/shared/providers/hash/hash.module';
 import { CreateDeliveryDto } from '@core/dto/create-delivery.dto';
 import { DeliveryStatus } from '@core/entities/delivery.entity';
-import {BadPayloadException} from '@core/errors/badPayloadException.error';
-import {UnauthorizedException} from '@core/errors/unauthorizedException.error';
-import {DeliveryRepository} from '@core/ports/delivery.repository';
+import { BadPayloadException } from '@core/errors/badPayloadException.error';
+import { UnauthorizedException } from '@core/errors/unauthorizedException.error';
+import { DeliveryRepository } from '@core/ports/delivery.repository';
 import { DeliverymanRepository } from '@core/ports/deliveryman.repository';
 import { DeliveryService } from '@core/services/delivery.service';
 import { DeliveryManService } from '@core/services/deliveryman.service';
@@ -301,22 +301,22 @@ describe('core -> DeliveryService', () => {
         it('should be able to get all deliveryman deliveries', async () => {
             const client_id = faker.datatype.uuid();
 
-            const {id: deliveryman_id} = await deliverymanService.createDeliveryman({
+            const { id: deliveryman_id } = await deliverymanService.createDeliveryman({
                 username: faker.name.firstName(),
                 password: faker.random.alpha(),
             });
 
-            const {id: deliveryId1} = await deliveryService.createDelivery({
+            const { id: deliveryId1 } = await deliveryService.createDelivery({
                 item_name: faker.commerce.productName(),
                 client_id,
             });
-            const {id: deliveryId2} = await deliveryService.createDelivery({
+            const { id: deliveryId2 } = await deliveryService.createDelivery({
                 item_name: faker.commerce.productName(),
                 client_id,
             });
 
-            await deliveryService.acceptDelivery({delivery_id: deliveryId1, deliveryman_id});
-            await deliveryService.acceptDelivery({delivery_id: deliveryId2, deliveryman_id});
+            await deliveryService.acceptDelivery({ delivery_id: deliveryId1, deliveryman_id });
+            await deliveryService.acceptDelivery({ delivery_id: deliveryId2, deliveryman_id });
 
             const results = await deliveryService.findAllDeliverymanDeliveries(deliveryman_id);
 

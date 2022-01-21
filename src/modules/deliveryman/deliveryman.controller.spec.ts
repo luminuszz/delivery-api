@@ -1,17 +1,17 @@
-import {DeliveryModule} from '@app/modules/delivery/delivery.module';
-import {DeliverymanController} from '@app/modules/deliveryman/deliveryman.controller';
-import {parseDeliveryman} from '@app/modules/deliveryman/parses/parse-deliveryman.parser';
-import {CreateDeliverymanValidationPipe} from '@app/modules/deliveryman/pipes/create-deliveryman.pipe';
-import {PersistenceModule} from '@app/modules/persistence/persistence.module';
-import {HashModule} from '@app/shared/providers/hash/hash.module';
-import {Deliveryman} from '@core/entities/deliveryman.entity';
-import {DeliverymanRepository} from '@core/ports/deliveryman.repository';
-import {DeliveryService} from '@core/services/delivery.service';
-import {ArgumentMetadata, BadRequestException, forwardRef, ValidationPipe} from '@nestjs/common';
-import {Test} from '@nestjs/testing';
+import { DeliveryModule } from '@app/modules/delivery/delivery.module';
+import { DeliverymanController } from '@app/modules/deliveryman/deliveryman.controller';
+import { parseDeliveryman } from '@app/modules/deliveryman/parses/parse-deliveryman.parser';
+import { CreateDeliverymanValidationPipe } from '@app/modules/deliveryman/pipes/create-deliveryman.pipe';
+import { PersistenceModule } from '@app/modules/persistence/persistence.module';
+import { HashModule } from '@app/shared/providers/hash/hash.module';
+import { Deliveryman } from '@core/entities/deliveryman.entity';
+import { DeliverymanRepository } from '@core/ports/deliveryman.repository';
+import { DeliveryService } from '@core/services/delivery.service';
+import { ArgumentMetadata, BadRequestException, forwardRef, ValidationPipe } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
 import * as faker from 'faker';
 
-import {DeliverymanServiceProvider} from './deliveryService.provider';
+import { DeliverymanServiceProvider } from './deliveryService.provider';
 
 describe('app -> DeliverymanController', () => {
     let deliverymanController: DeliverymanController;
