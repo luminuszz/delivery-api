@@ -1,12 +1,15 @@
-import * as dotenv from 'dotenv';
-import { resolve } from 'path';
+import * as shelljs from 'shelljs';
+import { uuid } from 'uuidv4';
 
-export default () => {
-    const path = resolve(__dirname, '..', '.env.dev');
+export default async () => {
+    const database_name = process.env.DB_NAME || `db_test_${uuid()}`;
 
-    dotenv.config({ path });
+    console.log(`run migrations -> ${database_name} ...`);
+
+    await shelljs.exec('yarn prisma migrate dev  --create-only');
 
     console.log({
-        t: process.env.PERSISTENCE_TYPE,
+        p: process.env.PERSISTENCE_TYPE,
+        message: 'init e2e tests',
     });
 };

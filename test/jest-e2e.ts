@@ -6,7 +6,8 @@ import { compilerOptions } from '../tsconfig.json';
 export default {
     moduleFileExtensions: ['js', 'json', 'ts'],
     rootDir: '.',
-    globalSetup: '../scripts/setup.ts',
+    globalSetup: '../scripts/setup.e2e.ts',
+    globalTeardown: '../scripts/teardown.e2e.ts',
     testEnvironment: 'node',
     testRegex: '.e2e-spec.ts$',
     verbose: true,

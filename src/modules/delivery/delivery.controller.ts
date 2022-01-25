@@ -5,12 +5,16 @@ import { CreateDeliveryValidatorPipe } from '@app/modules/delivery/pipes/create-
 import { FinishDeliveryValidatorPipe } from '@app/modules/delivery/pipes/finish-delivery-validator.pipe';
 import { DeliveryService } from '@core/services/delivery.service';
 import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Delivery')
 @Controller('delivery')
 export class DeliveryController {
     constructor(private readonly deliveryService: DeliveryService) {}
 
+    @ApiOperation({ description: 'Create delivery for client' })
     @Post()
+    @ApiBearerAuth('Clients')
     @Role('client')
     async createDelivery(@User('id') client_id: string, @Body() data: CreateDeliveryValidatorPipe) {
         return this.deliveryService.createDelivery({
@@ -19,6 +23,7 @@ export class DeliveryController {
         });
     }
 
+    @ApiBearerAuth('Deliveryman')
     @Role('deliveryman')
     @Put('accept')
     async acceptDelivery(@Body() data: AcceptDeliveryValidatorPipe, @User('id') deliveryman_id: string) {
@@ -28,6 +33,7 @@ export class DeliveryController {
         });
     }
 
+    @ApiBearerAuth('Deliveryman')
     @Role('deliveryman')
     @Put('finish')
     async finishDelivery(@User('id') deliveryman_id: string, @Body() data: FinishDeliveryValidatorPipe) {
@@ -39,6 +45,7 @@ export class DeliveryController {
     }
 
     @Role('deliveryman')
+    @ApiBearerAuth('Deliveryman')
     @Get('available')
     async getAllavailableDeliveries() {
         return this.deliveryService.findAllDeliveryWithStatusPending();
